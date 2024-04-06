@@ -10,6 +10,19 @@
 /[Ll]ogs/
 /[Uu]ser[Ss]ettings/
 
+# Editor Files
+/spacepod_1/Library/*
+/spacepod_1/Temp/*
+/spacepod_1/obj/*
+/spacepod_1/Build/*
+/spacepod_1/Logs/*
+/spacepod_1/UserSettings/*
+
+# Big Memory Files
+/spacepod_1/Prior_Setting/Video.mp4
+/spacepod_1/Assets/StreamingAssets/Video.mp4
+/spacepod_1/Assets/Fire & Explosion Effects/*
+
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
 /[Mm]emoryCaptures/
