@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
 public class TestManager : MonoBehaviour
 {
@@ -10,6 +11,15 @@ public class TestManager : MonoBehaviour
     private int screenSettingNum = 2;
     void Update()
     {
+        if (Input.GetKey(KeyCode.Escape))
+        {
+
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+#else
+            Application.Quit();
+#endif
+        }
         if (Input.anyKeyDown)
         {
             pressedKey = Input.inputString;
@@ -17,11 +27,11 @@ public class TestManager : MonoBehaviour
             {
                 case "1":
                     // L
-                    gameManager.CreateBird(1);
+                    gameManager.CreateBird(Random.Range(1,3), Directory.GetFiles(Application.streamingAssetsPath + $"/MaskImage")[0]);
                     break;
                 case "2":
                     // R
-                    gameManager.CreateBird(2);
+                    gameManager.CreateFlower();
                     break;
                 case "o":
                     particleManager.PlayParticle(BirdDir.Left, Random.Range(0, 5));

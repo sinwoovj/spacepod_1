@@ -19,8 +19,7 @@
 /spacepod_1/UserSettings/*
 
 # Big Memory Files
-/spacepod_1/Prior_Setting/Video.mp4
-/spacepod_1/Assets/StreamingAssets/Video.mp4
+/spacepod_1/Assets/StreamingAssets/Video/
 /spacepod_1/Assets/Fire & Explosion Effects/*
 
 # MemoryCaptures can get excessive in size.

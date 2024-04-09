@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8455d53b128267143ac38e543ddf157f, type: 3}
   m_Name: data
   m_EditorClassIdentifier: 
-  setValue: []
+  setValue:
+  - birdMoveSpeed: 0
+    animDuration: 0

@@ -15,7 +15,7 @@ public class BackgroundVideoSetting : MonoBehaviour
 
     public void SetVideo()
     {
-        videoPlayer.url = Application.streamingAssetsPath + $"/Video.mp4";
+        videoPlayer.url = Directory.GetFiles(Application.streamingAssetsPath + $"/Video")[0];
         Debug.Log(videoPlayer.url);
 
         // 준비가 되면 동영상 재생 시작
@@ -29,19 +29,4 @@ public class BackgroundVideoSetting : MonoBehaviour
         // 동영상 재생 시작
         vp.Play();
     }
-    /*
-    private void OnApplicationQuit()
-    {
-        string videoFilePath = Application.streamingAssetsPath + $"/Video.mp4";
-
-        if (File.Exists(videoFilePath))
-        {
-            File.Delete(videoFilePath);
-            Debug.Log("videoFile deleted successfully.");
-        }
-        else
-        {
-            Debug.Log("videoFile does not exist.");
-        }
-    }*/
 }

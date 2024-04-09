@@ -9,13 +9,13 @@ using System;
 public class DataConverter
 {
 
-    [MenuItem("Test/ReadFromExcel")]
+    //[MenuItem("Test/ReadFromExcel")]
     public static void ReadFromExcel()
     {
         Debug.Log("Test");
         System.Data.DataSet dataset;
 
-        string filePath = "Assets/Prior_Setting/SetValue.xlsx";
+        string filePath = Application.streamingAssetsPath + $"/SetValue.xlsx";
         using (var stream = File.Open(filePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
         {
             using (var reader = ExcelReaderFactory.CreateReader(stream))
@@ -26,20 +26,7 @@ public class DataConverter
 
         Debug.Log($"TableCount :{dataset.Tables.Count}");
 
-        string assetPath = "Assets/data.asset";
-
-        var setData = AssetDatabase.LoadAssetAtPath<SetData>(assetPath);
-
-        if (setData == null)
-        {
-            setData = ScriptableObject.CreateInstance<SetData>();
-
-            AssetDatabase.CreateAsset(setData, assetPath);
-        }
-        else
-        {
-            EditorUtility.SetDirty(setData);
-        }
+        var setData = ScriptableObject.CreateInstance<SetData>();
 
         var gtype = typeof(SetData);
         var dtype = typeof(DataConverter);
@@ -57,9 +44,6 @@ public class DataConverter
             var res = nmi.Invoke(null, new object[] { dataset, f.Name });
             f.SetValue(setData, res);
         }
-
-        AssetDatabase.SaveAssets();
-        AssetDatabase.Refresh();
     }
 
     private static List<T> MakeListFromDataset<T>(DataSet dataset, string tableName) where T : new()
