@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using System.Linq;
 
 public class TestManager : MonoBehaviour
 {
@@ -27,11 +28,11 @@ public class TestManager : MonoBehaviour
             {
                 case "1":
                     // L
-                    gameManager.CreateBird(Random.Range(1,3), Directory.GetFiles(Application.streamingAssetsPath + $"/MaskImage")[0]);
+                    gameManager.CreateBird(Random.Range(1,3), Directory.EnumerateFiles(Application.streamingAssetsPath + $"/MaskImage", "*.png").ToArray()[0]);
                     break;
                 case "2":
                     // R
-                    gameManager.CreateFlower();
+                    gameManager.CreateFlower(Directory.EnumerateFiles(Application.streamingAssetsPath + $"/MaskImage", "*.png").ToArray()[1]);
                     break;
                 case "o":
                     particleManager.PlayParticle(BirdDir.Left, Random.Range(0, 5));

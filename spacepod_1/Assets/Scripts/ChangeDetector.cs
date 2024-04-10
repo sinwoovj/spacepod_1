@@ -84,7 +84,7 @@ public class ChangeDetector : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(1f); // 폴더를 모니터링하는 간격 설정 (예: 1초)
+            yield return new WaitForSeconds(0.5f); // 폴더를 모니터링하는 간격 설정 (예: 1초)
 
             // 현재 파일 목록 가져오기
             foreach (string folderPath in foldersToMonitor)
@@ -119,7 +119,7 @@ public class ChangeDetector : MonoBehaviour
                         else if (assetFolder.Contains("scan2")) // 꽃
                         {
                             Debug.Log("Imported Flower Image: " + str);
-                            GameObject.Find("GameManager").GetComponent<GameManager>().CreateFlower();
+                            GameObject.Find("GameManager").GetComponent<GameManager>().CreateFlower(Directory.GetFiles(Application.streamingAssetsPath + $"/scan2")[0]);
                         }
                         else if (assetFolder.Contains("Video"))
                         {

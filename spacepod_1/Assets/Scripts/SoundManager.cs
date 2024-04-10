@@ -4,20 +4,19 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
-    public AudioClip soundEffect; // 재생할 사운드 클립
+    public AudioClip[] soundEffect; // 재생할 사운드 클립
     private AudioSource audioSource; // 오디오 소스 컴포넌트
 
     void Start()
     {
         // AudioSource 컴포넌트 가져오기
         audioSource = GetComponent<AudioSource>();
-
-        // AudioSource에 재생할 AudioClip 설정
-        audioSource.clip = soundEffect;
     }
 
-    public void PlaySound()
+    public void PlaySound(int n)
     {
+        // AudioSource에 재생할 AudioClip 설정
+        audioSource.clip = soundEffect[n];
         audioSource.Play();
     }
 }
