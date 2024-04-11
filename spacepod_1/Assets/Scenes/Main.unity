@@ -764,7 +764,7 @@ MonoBehaviour:
   soundManager: {fileID: 1561077608}
   prefabToSpawn:
   - {fileID: 8429017535284365736, guid: 19264fdee2370d846b8490fbafb6ddd0, type: 3}
-  - {fileID: 8984238762721978338, guid: 370c0de3b24e56a4b8605507bf741074, type: 3}
+  - {fileID: 8958112240305702844, guid: 578d53b80313ebc4ba94ebc4d9bbdebf, type: 3}
   spawnPosL:
   - {fileID: 1611307986}
   - {fileID: 467441771}
