@@ -4,17 +4,18 @@ using UnityEngine;
 
 public class AppearFlower : MonoBehaviour
 {
-    public void AppearStart()
+    public void AppearStart(int randomint)
     {
-        StartCoroutine(AppearFlowerCoroutine(8));
+        StartCoroutine(AppearFlowerCoroutine(randomint, 8));
     }
 
-    private IEnumerator AppearFlowerCoroutine(float duration)
+    private IEnumerator AppearFlowerCoroutine(int randomint, float duration)
     {
         StartCoroutine(ChangeSizeCoroutine(0, 0.8f, 1, this.transform));
         yield return new WaitForSeconds(duration);
         StartCoroutine(ChangeSizeCoroutine(0.8f, 0, 1, this.transform));
         yield return new WaitForSeconds(2f);
+        GameObject.Find($"B{randomint}").GetComponent<SpawnData>().SetUsing(false);
         Destroy(gameObject);
     }
 

@@ -4,19 +4,33 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
-    public AudioClip[] soundEffect; // 재생할 사운드 클립
-    private AudioSource audioSource; // 오디오 소스 컴포넌트
+    private AudioSource[] audioSource; // 오디오 소스 컴포넌트
 
     void Start()
     {
         // AudioSource 컴포넌트 가져오기
-        audioSource = GetComponent<AudioSource>();
+        AudioSource[] audioSources = this.gameObject.GetComponents<AudioSource>();
+
+        // 배열 초기화
+        audioSource = new AudioSource[audioSources.Length];
+
+        // AudioSource 컴포넌트 복사
+        for (int i = 0; i < audioSources.Length; i++)
+        {
+            audioSource[i] = audioSources[i];
+        }
     }
 
     public void PlaySound(int n)
     {
-        // AudioSource에 재생할 AudioClip 설정
-        audioSource.clip = soundEffect[n];
-        audioSource.Play();
+        // 오디오 소스 재생
+        if (n >= 0 && n < audioSource.Length && audioSource[n] != null)
+        {
+            audioSource[n].Play();
+        }
+        else
+        {
+            Debug.LogError("Invalid audio source index or audio source is null.");
+        }
     }
 }

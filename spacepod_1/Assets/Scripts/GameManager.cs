@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     public void CreateBird(int n, string imageDirectory) // 차후 이미지를 끼워진 상태
     {
         // 프리팹을 spawnPosition 위치에 생성
-        int randomint = Random.Range(0, 5);
+        int randomint = Random.Range(0, 3);
         GameObject spawnedObject1 = Instantiate(prefabToSpawn[0], n==1 ? spawnPosL[randomint].transform.position : spawnPosR[randomint].transform.position, Quaternion.Euler(new Vector3(0f,n==1?90f:-90f,0f)));
         
         // 새로운 메테리얼 생성
@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
         if (imageDirectory != Directory.EnumerateFiles(Application.streamingAssetsPath + $"/MaskImage", "*.png").ToArray()[0])
         {
             // 이미지 bin으로 이동
-            File.Move(Directory.GetFiles(Application.streamingAssetsPath + $"/scan1")[0], Application.streamingAssetsPath + $"/bin/{birdCount}.png");
+            File.Move(Directory.GetFiles(Application.streamingAssetsPath + $"/scan1")[0], Application.streamingAssetsPath + $"/bin/B{birdCount}.png");
             
             // 폴더 비우기
             DeleteFolder(Application.streamingAssetsPath + $"/scan1");
@@ -57,7 +57,19 @@ public class GameManager : MonoBehaviour
     public void CreateFlower(string imageDirectory)
     {
         // 프리팹을 spawnPosition 위치에 생성
-        int randomint = Random.Range(0, 5);
+        int randomint = 0;
+        int loopTime = 0;
+        do
+        {
+            if (loopTime > 5)
+            {
+                Debug.LogError("꽃이 생성될 수 있는 범위를 넘었습니다.");
+                break;
+            }
+            loopTime++;
+            randomint = Random.Range(0, 5);
+        } while (GameObject.Find($"B{randomint}").GetComponent<SpawnData>().GetUsing() == true);
+        GameObject.Find($"B{randomint}").GetComponent<SpawnData>().SetUsing(true);
         GameObject spawnedObject2 = Instantiate(prefabToSpawn[1], spawnPosB[randomint].transform.position , Quaternion.Euler(new Vector3(0,-90,0)));
 
         // 새로운 메테리얼 생성
@@ -74,13 +86,13 @@ public class GameManager : MonoBehaviour
         // 프리팹의 메테리얼의 텍스쳐를 갈아끼워주는 메서드
         ChangeTexture(spawnedObject2, newMaterial, "flower");
 
-        // 오브젝트 이동
-        spawnedObject2.GetComponent<AppearFlower>().AppearStart();
+        // 오브젝트 소환
+        spawnedObject2.GetComponent<AppearFlower>().AppearStart(randomint);
 
         if (imageDirectory != Directory.EnumerateFiles(Application.streamingAssetsPath + $"/MaskImage", "*.png").ToArray()[1])
         {
             // 이미지 bin으로 이동
-            File.Move(Directory.GetFiles(Application.streamingAssetsPath + $"/scan2")[0], Application.streamingAssetsPath + $"/bin/{birdCount}.png");
+            File.Move(Directory.GetFiles(Application.streamingAssetsPath + $"/scan2")[0], Application.streamingAssetsPath + $"/bin/F{flowerCount}.png");
            
             // 폴더 비우기
             DeleteFolder(Application.streamingAssetsPath + $"/scan2");

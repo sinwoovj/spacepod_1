@@ -35,10 +35,10 @@ public class TestManager : MonoBehaviour
                     gameManager.CreateFlower(Directory.EnumerateFiles(Application.streamingAssetsPath + $"/MaskImage", "*.png").ToArray()[1]);
                     break;
                 case "o":
-                    particleManager.PlayParticle(BirdDir.Left, Random.Range(0, 5));
+                    particleManager.PlayParticle(BirdDir.Left, Random.Range(0, 3));
                     break;
                 case "p":
-                    particleManager.PlayParticle(BirdDir.Right , Random.Range(0, 5));
+                    particleManager.PlayParticle(BirdDir.Right , Random.Range(0, 3));
                     break;
                 case "[":
                     if(screenSettingNum < 3)
