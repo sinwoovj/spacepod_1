@@ -22,6 +22,7 @@
             3 : 1920*706 해상도, 창모드
     "Esc" : 프로그램을 종료한다.
 
+4. 프로젝트 수정 시 추가로 파티클 라이브러리 다운로드가 필요할 수 있습니다.
 | 프로그램 플로우 |
 
 1. 스캐너로 부터 "scan1" 폴더 안에 들어온 이미지를 파이썬 프로그램을 통해 제비인지 꽃인지 구별한 뒤 네이밍을 통해 처리를 하여 각각의 메서드를 실행시킨다.
@@ -35,6 +36,8 @@
 | 리소스 출처 |
 
 Birds 3D Model : https://sketchfab.com/3d-models/birds-3a9bb97be78944f9bffc23fb25c2154e
+
+Particle :  https://assetstore.unity.com/packages/vfx/particles/particle-pack-127325
 
 | 깃허브 |
 

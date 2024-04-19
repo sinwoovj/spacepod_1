@@ -789,7 +789,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundManager: {fileID: 1561077608}
   prefabToSpawn:
-  - {fileID: 2755952049590866486, guid: cb5b7c4d9cc343d47aedd29fef4ddfb1, type: 3}
+  - {fileID: 4128051956127470947, guid: ab1e04666ef7e5447bd18a4dec6bde1d, type: 3}
   - {fileID: 6072170378232216253, guid: 2e21e70e7890b554b849172f1a028608, type: 3}
   spawnPosL:
   - {fileID: 1611307986}
