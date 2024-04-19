@@ -790,7 +790,7 @@ MonoBehaviour:
   soundManager: {fileID: 1561077608}
   prefabToSpawn:
   - {fileID: 4128051956127470947, guid: ab1e04666ef7e5447bd18a4dec6bde1d, type: 3}
-  - {fileID: 6072170378232216253, guid: 2e21e70e7890b554b849172f1a028608, type: 3}
+  - {fileID: 2552631342543297221, guid: 5013d626fdc9e2e408aa2f8caf7e2098, type: 3}
   spawnPosL:
   - {fileID: 1611307986}
   - {fileID: 467441771}
