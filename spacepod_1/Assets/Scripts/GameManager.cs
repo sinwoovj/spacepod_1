@@ -21,33 +21,39 @@ public class GameManager : MonoBehaviour
     {
         // 프리팹을 spawnPosition 위치에 생성
         int randomint = Random.Range(0, 3);
-        GameObject spawnedObject1 = Instantiate(prefabToSpawn[0], n==1 ? spawnPosL[randomint].transform.position : spawnPosR[randomint].transform.position, Quaternion.Euler(new Vector3(0f,n==1?90f:-90f,0f)));
-        
+        GameObject spawnedObject1 = Instantiate(prefabToSpawn[0], n == 1 ? spawnPosL[randomint].transform.position : spawnPosR[randomint].transform.position, Quaternion.Euler(new Vector3(0f, n == 1 ? 90f : -90f, 0f)));
+
         // 새로운 메테리얼 생성
         Material newMaterial = new Material(Shader.Find("Standard"));
         newMaterial.name = birdCount.ToString();
-        
+
         // 특정 이미지를 메테리얼에 할당
-        byte[] fileData = File.ReadAllBytes(imageDirectory);
+        byte[] fileData;
+        // 파일을 읽어들일 때 FileShare.ReadWrite 옵션을 사용하여 파일 공유를 가능하게 함
+        using (FileStream fs = new FileStream(imageDirectory, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+        {
+            fileData = new byte[fs.Length];
+            fs.Read(fileData, 0, (int)fs.Length);
+        }
         Debug.Log("특정 제비 이미지 메테리얼 할당");
         Texture2D texture = new Texture2D(2, 2);
         texture.LoadImage(fileData);
         newMaterial.mainTexture = texture;
-        
+
         // 프리팹의 메테리얼의 텍스쳐를 갈아끼워주는 메서드
         ChangeTexture(spawnedObject1, newMaterial, "magpie");
-        
+
         // 오브젝트 이동
         spawnedObject1.GetComponent<MoveBird>().MoveStart(n == 1 ? BirdDir.Left : BirdDir.Right, randomint);
         if (imageDirectory != Directory.EnumerateFiles(Application.streamingAssetsPath + $"/MaskImage", "*.png").ToArray()[0])
         {
             // 이미지 bin으로 이동
             File.Move(Directory.GetFiles(Application.streamingAssetsPath + $"/scan1")[0], Application.streamingAssetsPath + $"/bin/B{birdCount}.png");
-            
+
             // 폴더 비우기
             DeleteFolder(Application.streamingAssetsPath + $"/scan1");
         }
-        
+
         // SFX 재생
         soundManager.PlaySound(0);
 
@@ -70,14 +76,20 @@ public class GameManager : MonoBehaviour
             randomint = Random.Range(0, 5);
         } while (GameObject.Find($"B{randomint}").GetComponent<SpawnData>().GetUsing() == true);
         GameObject.Find($"B{randomint}").GetComponent<SpawnData>().SetUsing(true);
-        GameObject spawnedObject2 = Instantiate(prefabToSpawn[1], spawnPosB[randomint].transform.position , Quaternion.Euler(new Vector3(0,-90,0)));
+        GameObject spawnedObject2 = Instantiate(prefabToSpawn[1], spawnPosB[randomint].transform.position, Quaternion.Euler(new Vector3(0, -90, 0)));
 
         // 새로운 메테리얼 생성
         Material newMaterial = new Material(Shader.Find("Standard"));
         newMaterial.name = flowerCount.ToString();
 
         // 특정 이미지를 메테리얼에 할당
-        byte[] fileData = File.ReadAllBytes(imageDirectory);
+        byte[] fileData;
+        // 파일을 읽어들일 때 FileShare.ReadWrite 옵션을 사용하여 파일 공유를 가능하게 함
+        using (FileStream fs = new FileStream(imageDirectory, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+        {
+            fileData = new byte[fs.Length];
+            fs.Read(fileData, 0, (int)fs.Length);
+        }
         Debug.Log("특정 꽃 이미지 메테리얼 할당");
         Texture2D texture = new Texture2D(2, 2);
         texture.LoadImage(fileData);
@@ -93,7 +105,7 @@ public class GameManager : MonoBehaviour
         {
             // 이미지 bin으로 이동
             File.Move(Directory.GetFiles(Application.streamingAssetsPath + $"/scan2")[0], Application.streamingAssetsPath + $"/bin/F{flowerCount}.png");
-           
+
             // 폴더 비우기
             DeleteFolder(Application.streamingAssetsPath + $"/scan2");
         }
