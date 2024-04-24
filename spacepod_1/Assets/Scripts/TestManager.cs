@@ -10,6 +10,7 @@ public class TestManager : MonoBehaviour
     public GameManager gameManager;
     private string pressedKey;
     private int screenSettingNum = 2;
+    private int flowerNaming = 0;
     void Update()
     {
         if (Input.GetKey(KeyCode.Escape))
@@ -32,7 +33,10 @@ public class TestManager : MonoBehaviour
                     break;
                 case "2":
                     // R
-                    gameManager.CreateFlower(Directory.EnumerateFiles(Application.streamingAssetsPath + $"/MaskImage", "*.png").ToArray()[1]);
+                    //gameManager.CreateFlower(Directory.EnumerateFiles(Application.streamingAssetsPath + $"/MaskImage", "*.png").ToArray()[1]);
+                    File.Copy(Directory.EnumerateFiles(Application.streamingAssetsPath + $"/MaskImage", "*.png").ToArray()[1],
+                        Application.streamingAssetsPath + $"/scan2/{flowerNaming}.png", true);
+                    flowerNaming++;
                     break;
                 case "o":
                     particleManager.PlayParticle(BirdDir.Left, Random.Range(0, 3));

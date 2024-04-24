@@ -1,22 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public class AppearFlower : MonoBehaviour
 {
-    public void AppearStart(int randomint)
+    public float flowerDuration = 15f;
+    public void AppearStart(string imageDirectory, int randomint, bool isStacks)
     {
-        StartCoroutine(AppearFlowerCoroutine(randomint, 8));
+        if (isStacks) GameObject.Find("GameManager").GetComponent<GameManager>().flowerStacks.RemoveAt(0);
+        StartCoroutine(AppearFlowerCoroutine(randomint, flowerDuration, imageDirectory, isStacks));
     }
 
-    private IEnumerator AppearFlowerCoroutine(int randomint, float duration)
+    private IEnumerator AppearFlowerCoroutine(int randomint, float duration, string imageDirectory, bool isStacks)
     {
         StartCoroutine(ChangeSizeCoroutine(0, 0.8f, 1, this.transform));
         yield return new WaitForSeconds(duration);
         StartCoroutine(ChangeSizeCoroutine(0.8f, 0, 1, this.transform));
         yield return new WaitForSeconds(2f);
-        GameObject.Find($"B{randomint}").GetComponent<SpawnData>().SetUsing(false);
-        Destroy(gameObject);
+        GameManager gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        gameManager.isFlowerSpace = true;
+        gameManager.randomints.Remove(randomint); // 스택의 첫 번째 항목을 처리했으므로 제거
+        Destroy(this.gameObject);
     }
 
     // 크기를 비선형으로 변경하는 코루틴 함수

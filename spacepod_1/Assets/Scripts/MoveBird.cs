@@ -5,7 +5,7 @@ using UnityEngine;
 public class MoveBird : MonoBehaviour
 {
     public bool reachDestination = false;
-    public float birdSpeed = 3;
+    public float birdSpeed = 2.5f;
 
     public void MoveStart(BirdDir dir, int pos) // dir: 방향[L,R] , pos: 위치 [1,2,3,4,5]
     {

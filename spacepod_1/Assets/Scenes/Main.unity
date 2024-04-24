@@ -807,6 +807,12 @@ MonoBehaviour:
   - {fileID: 371729387}
   birdCount: 0
   flowerCount: 0
+  flowerStacks: []
+  isFlowerSpace: 1
+  isFlowerStack: 0
+  randomints: 
+  flowerCountLimit: 10
+  stackFlowerCount: 0
 --- !u!1 &826632562
 GameObject:
   m_ObjectHideFlags: 0
@@ -1234,7 +1240,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1561077607}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 853be30421f40f04c8640596eb38d63c, type: 3}
@@ -1330,7 +1336,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1561077607}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: d97e6bb950c8e734ea215a4029039402, type: 3}

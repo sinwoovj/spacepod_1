@@ -2265,7 +2265,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   reachDestination: 0
-  birdSpeed: 3
+  birdSpeed: 2.5
 --- !u!54 &4072151289691815015
 Rigidbody:
   m_ObjectHideFlags: 0
